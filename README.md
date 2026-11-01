@@ -40,7 +40,9 @@ Daily: S1/S3/S4/S6/H02 ×1; release: S2/S5/S7/S8/S9/S10/H01/H03 ×5. `tool_calle
 
 ## Походження й чесність вимірів
 
-Лабораторний прогноз збережено незмінним у `evidence/lab-prediction.md`, первинні повні відповіді — `evidence/lab-evidence.md`. Новий прогноз ДЗ буде окремим комітом до запусків на фінальному hash. Він поінформований лабораторною, а не сліпий. Бюджет/час виправлень у Policy слід відрізняти від виміряних latency й cost.
+Лабораторний прогноз збережено незмінним у `evidence/lab-prediction.md`, первинні повні відповіді — `evidence/lab-evidence.md`. [Прогноз ДЗ](evidence/homework-prediction.md) закомічено окремо (`2ae14ca`) до запусків на фінальному hash. Він поінформований лабораторною, а не сліпий. Бюджет/час виправлень у Policy слід відрізняти від виміряних latency й cost.
+
+Результат: [заповнена Policy](tool-call-testing-policy.md), [універсальна порожня форма](tool-call-testing-policy-template.md), [аудит вимог і вартості](evidence/verification.md), [дослівні відповіді та докази](evidence/homework-evidence.md). Baseline 13/13; daily baseline 5/5; release baseline 40/40. Виявлено всі шість дефектних умов (3 daily, 3 release). 203 платні виклики коштували $0.038970875, точно звірено з приростом OpenRouter usage. Для повторної офлайн-перевірки архіву: `python archive_evidence.py evidence/homework-runs` (лише стандартна бібліотека, жодних API-викликів).
 
 Після перевірки зупиніть mock і поверніть стенд без override:
 

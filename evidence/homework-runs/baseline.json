@@ -1,0 +1,552 @@
+[
+ {
+  "scenario": "H01",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0802', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{'transaction_id': 'TX-0801'} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0802', 'account_id': 'ACC-1009', 'amount': 80.0, 'currency': 'GBP'}]"
+     }
+    ],
+    "answer": "I've opened dispute #1 for TX-0802, the 80.00 GBP card payment to London Transit on 10 September 2026, under the reason \"unauthorized debit\". Its status is open.\n\nThe 120.00 USD payment to BookDepot US (TX-0801) has no dispute, as you confirmed it is recognized.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000529,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ },
+ {
+  "scenario": "H02",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I won't submit a second dispute for TX-0202. Dispute 1 is already open for that transaction, and a duplicate filing could create a second case on the same charge.\n\nYour existing case is dispute ID 1, status open, for 89.99 USD on ACC-1003 under the unauthorized-debit reason. If you want more certainty about its progress, I can escalate to a human agent to review the case.",
+    "tools": [],
+    "model_calls": 1,
+    "cache_read": [
+     2514
+    ],
+    "cost_usd": 0.000231,
+    "mock_answered": 3,
+    "mock_seen": 4
+   }
+  ]
+ },
+ {
+  "scenario": "H03",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 1,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "quote_fx calls: [{'customer_id': 'CUS-0008', 'amount': 80, 'from_currency': 'GBP', 'to_currency': 'EUR'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{} called 0x"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "send_statement{} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows []"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows []"
+     }
+    ],
+    "answer": "Here is the quote for converting 80 GBP to EUR. No money has been sent, and no dispute or statement was created.\n\n- **Mid rate:** 1 GBP = 1.17 EUR\n- **Gross amount:** 80 GBP × 1.17 = 93.60 EUR\n- **Tier 1 spread:** 0.0%, so 0.00 EUR\n- **Free FX allowance:** 500 EUR total, of which 300 EUR was already used, leaving 200 EUR. The allowance applies to this conversion.\n- **Final amount:** **93.60 EUR**\n\nThe quote is for information only. Your EUR account (ACC-1009) currently holds a balance of 940.10 EUR.",
+    "tools": [
+     "get_account",
+     "quote_fx"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000419,
+    "mock_answered": 0,
+    "mock_seen": 3
+   }
+  ]
+ },
+ {
+  "scenario": "S1",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I've opened dispute 1 for transaction TX-0202 (CloudServe Subscription, 89.99 USD, 8 September 2026) on ACC-1003, under the reason \"unauthorized debit\". Its status is open. Please keep an eye on your account for updates on the dispute.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000498,
+    "mock_answered": 4,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S10",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows []"
+     }
+    ],
+    "answer": "I can't open a duplicate-charge dispute for TX-0402 (TechMart Online, 240.00 EUR, 14 July 2026). The dispute window for that payment is 60 days, and it closed on 12 September 2026. Today is 15 September 2026, so the claim is out of time and I have not filed anything.\n\nThe other TechMart payment, TX-0401 (240.00 EUR, 20 July 2026), is still within the window. Its window closes on 18 September 2026, so if you think it is a duplicate, I can check its eligibility and open a dispute if it qualifies. Would you like me to do that?",
+    "tools": [
+     "check_dispute_eligibility"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000429,
+    "mock_answered": 2,
+    "mock_seen": 4
+   }
+  ]
+ },
+ {
+  "scenario": "S2",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{'transaction_id': 'TX-0204'} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I've opened an unauthorized-debit dispute for TX-0202 (CloudServe Subscription, 89.99 USD, 8 September 2026). The dispute ID is 1 and its status is open.\n\nThe TX-0204 FlightHub payment stays as it is, since you confirmed it.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.00047,
+    "mock_answered": 3,
+    "mock_seen": 6
+   }
+  ]
+ },
+ {
+  "scenario": "S3",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_result_schema",
+      "ok": true,
+      "detail": "result matches the contract"
+     }
+    ],
+    "answer": "I can't open a duplicate-charge dispute for TX-0402 (TechMart Online, 240.00 EUR, 14 July 2026). The dispute window for this reason is 60 days, and it closed on 12 September 2026. Today is 15 September 2026, so the window has passed. I haven't opened anything.\n\nThe other payment, TX-0401 (240.00 EUR, 20 July 2026), is more recent. Its window may still be open, and I can check its eligibility if you'd like. I can also search our documentation for any exceptions to the 60-day window, or pass your case to a human agent to review.",
+    "tools": [
+     "check_dispute_eligibility"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000393,
+    "mock_answered": 2,
+    "mock_seen": 4
+   }
+  ]
+ },
+ {
+  "scenario": "S4",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0401', 'account_id': 'ACC-1005', 'amount': 240.0, 'currency': 'EUR'}]"
+     }
+    ],
+    "answer": "I won't open it again. The first request returned dispute ID 1 with status **open**, so it went through. A second submission could create a duplicate dispute on the same transaction.\n\nI can't look up dispute records directly with my tools. If you need independent confirmation, I can escalate to a human agent to verify dispute 1 on TX-0401.",
+    "tools": [],
+    "model_calls": 1,
+    "cache_read": [
+     2514
+    ],
+    "cost_usd": 0.000253,
+    "mock_answered": 3,
+    "mock_seen": 4
+   }
+  ]
+ },
+ {
+  "scenario": "S5",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 4,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": true,
+      "detail": "cache_read per call from #2: [2514]"
+     }
+    ],
+    "answer": "Your current transfer limits (tier3, as of 15 September 2026, in EUR equivalent) are:\n\n- **Daily:** limit €100,000.00; spent €4,914.00; remaining €95,086.00\n- **Monthly:** limit €1,000,000.00; spent €35,334.00; remaining €964,666.00",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000289,
+    "mock_answered": 5,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S6",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0801', 'reason_code': 'unauthorized_debit', 'amount': 120, 'currency': 'USD'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0801', 'account_id': 'ACC-1009', 'amount': 120.0, 'currency': 'USD'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0801', 'account_id': 'ACC-1009', 'amount': 120.0, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "The dispute is open.\n\n- **Dispute ID:** 1\n- **Transaction:** TX-0801, BookDepot US, 120.00 USD, 9 September 2026, account ACC-1009\n- **Reason:** Unauthorized debit\n- **Status:** Open\n\nThe eligibility check passed. The dispute window runs until 4 November 2026. I have no further details on how the dispute will be reviewed or when it will be resolved, so please check your dispute status for updates.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000524,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ },
+ {
+  "scenario": "S7",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 1,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "get_account calls: [{'account_id': 'ACC-1009'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{} called 0x"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "send_statement{} called 0x"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "escalate_to_human{} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows []"
+     }
+    ],
+    "answer": "Hello Hugo Martins. The current balance of account ACC-1009 is **EUR 940.10**.",
+    "tools": [
+     "get_account"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000135,
+    "mock_answered": 0,
+    "mock_seen": 2
+   }
+  ]
+ },
+ {
+  "scenario": "S8",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 1,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_sequence",
+      "ok": true,
+      "detail": "tools ['get_account', 'check_limits']"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows []"
+     }
+    ],
+    "answer": "Yes, a EUR 4,500 transfer is within your limits for today, based on your tier 3 limits as of 15 September 2026:\n\n- **Daily limit:** EUR 100,000. Spent so far: EUR 4,914. Remaining: EUR 95,086.\n- **Monthly limit:** EUR 1,000,000. Spent so far: EUR 35,334. Remaining: EUR 964,666.\n\nYour account (ACC-1011) is held in GBP with a balance of GBP 61,200, so the EUR amount would be converted from GBP at the applicable rate. I can get a full FX quote showing the exact GBP amount, rate, and spread if you'd like. I can't confirm from here that the payment will settle today, since that depends on processing times I don't have access to.",
+    "tools": [
+     "get_account",
+     "check_limits"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000534,
+    "mock_answered": 0,
+    "mock_seen": 3
+   }
+  ]
+ },
+ {
+  "scenario": "S9",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0101', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_order",
+      "ok": true,
+      "detail": "check_dispute_eligibility before create_dispute: ['check_dispute_eligibility', 'create_dispute']"
+     }
+    ],
+    "answer": "I've opened an unauthorized-debit dispute for TX-0101 (GreenGrocer Berlin, 54.90 EUR, 10 September 2026). The dispute ID is 1 and its status is open.\n\nThe dispute window for this transaction runs until 5 November 2026. Please keep any records you have about the transaction, such as receipts or messages, in case they're requested.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000468,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ }
+]

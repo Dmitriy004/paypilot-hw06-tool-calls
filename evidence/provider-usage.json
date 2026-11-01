@@ -1,0 +1,12 @@
+{
+  "source": "OpenRouter authenticated usage API reconciliation, private account snapshots retained locally and excluded from publication",
+  "verification_window_utc": ["2026-11-01T17:10:44Z", "2026-11-01T17:18:25Z"],
+  "homework_usage_delta_usd": "0.038970875",
+  "trace_provider_cost_sum_usd": "0.038970875",
+  "rounded_response_sum_usd": "0.038974",
+  "model": "anthropic/claude-haiku-5.5",
+  "pricing_source": "GET https://openrouter.ai/api/v1/models, 2026-11-01T17:17:30Z",
+  "usd_per_million_tokens": {"prompt": "0.10", "completion": "0.50", "input_cache_read": "0.01", "input_cache_write": "0.125"},
+  "reconciled_exactly": true,
+  "note": "Only the homework run cost is public. Account cumulative usage, total credits, remaining balance, account identifiers and credentials are deliberately excluded. Usage propagation lag resolved in the final check. API reconciliation is not a claim of inspecting web Billing console. Prior lab cost is excluded from this homework delta."
+}

@@ -1,0 +1,495 @@
+{
+  "set_hash": "8c07838fce08f290b7f35e2a3929bf644ecc997ba5d234aa882408c4cbe6530a",
+  "prediction_commit": "2ae14ca",
+  "live_runs": 76,
+  "replayed_assertions": 198,
+  "chat_requests": 160,
+  "paid_llm_calls": 203,
+  "models": [
+    "anthropic/claude-haiku-5.5"
+  ],
+  "scripted_model_requests": 155,
+  "provider_cost_usd": "0.038970875",
+  "response_cost_usd": "0.038974",
+  "input_tokens": 631495,
+  "output_tokens": 36003,
+  "cache_read_tokens": 477820,
+  "cache_write_tokens": 32947,
+  "s5_provider_cost_ratio": "2.872428450905315075605165812",
+  "s10_attempts": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "s10_successful_writes": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "groups": [
+    {
+      "phase": "daily",
+      "scenario": "H02",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 1,
+      "provider_cost_usd": "0.00051515",
+      "mean_provider_cost_usd": "0.00051515",
+      "request_ids": [
+        "d95c0f10e7ee4790"
+      ]
+    },
+    {
+      "phase": "daily",
+      "scenario": "S1",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00048842",
+      "mean_provider_cost_usd": "0.00048842",
+      "request_ids": [
+        "e99060a919144807"
+      ]
+    },
+    {
+      "phase": "daily",
+      "scenario": "S1",
+      "condition": "defect",
+      "pass": 0,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00077451",
+      "mean_provider_cost_usd": "0.00077451",
+      "request_ids": [
+        "af8028afaba842b2"
+      ]
+    },
+    {
+      "phase": "daily",
+      "scenario": "S3",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 2,
+      "provider_cost_usd": "0.00037558",
+      "mean_provider_cost_usd": "0.00037558",
+      "request_ids": [
+        "ca2c161d443d4990"
+      ]
+    },
+    {
+      "phase": "daily",
+      "scenario": "S3",
+      "condition": "defect",
+      "pass": 0,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00046212",
+      "mean_provider_cost_usd": "0.00046212",
+      "request_ids": [
+        "d337528e5cb04879"
+      ]
+    },
+    {
+      "phase": "daily",
+      "scenario": "S4",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 1,
+      "provider_cost_usd": "0.00025374",
+      "mean_provider_cost_usd": "0.00025374",
+      "request_ids": [
+        "3b7e559aac574e2c"
+      ]
+    },
+    {
+      "phase": "daily",
+      "scenario": "S6",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00048042",
+      "mean_provider_cost_usd": "0.00048042",
+      "request_ids": [
+        "663590c3c0d94115"
+      ]
+    },
+    {
+      "phase": "daily",
+      "scenario": "S6",
+      "condition": "defect",
+      "pass": 0,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00048742",
+      "mean_provider_cost_usd": "0.00048742",
+      "request_ids": [
+        "a243da3498554a3b"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "H01",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00052812",
+      "mean_provider_cost_usd": "0.00052812",
+      "request_ids": [
+        "156dbb0e172e4efb"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "H02",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 1,
+      "provider_cost_usd": "0.00023054",
+      "mean_provider_cost_usd": "0.00023054",
+      "request_ids": [
+        "602b65922cd64acb"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "H03",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00041872",
+      "mean_provider_cost_usd": "0.00041872",
+      "request_ids": [
+        "8aa363eaaac541c1"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S1",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00049742",
+      "mean_provider_cost_usd": "0.00049742",
+      "request_ids": [
+        "fae14e573b2d4916"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S10",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 2,
+      "provider_cost_usd": "0.00042838",
+      "mean_provider_cost_usd": "0.00042838",
+      "request_ids": [
+        "6aa36d20f2c94200"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S2",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00046942",
+      "mean_provider_cost_usd": "0.00046942",
+      "request_ids": [
+        "bf910b0320d44521"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S3",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 2,
+      "provider_cost_usd": "0.00039308",
+      "mean_provider_cost_usd": "0.00039308",
+      "request_ids": [
+        "233165c5f399424e"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S4",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 1,
+      "provider_cost_usd": "0.00025274",
+      "mean_provider_cost_usd": "0.00025274",
+      "request_ids": [
+        "1135bf9bd5344ff9"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S5",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 2,
+      "provider_cost_usd": "0.00028958",
+      "mean_provider_cost_usd": "0.00028958",
+      "request_ids": [
+        "eb727c6d5137465a"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S6",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00052392",
+      "mean_provider_cost_usd": "0.00052392",
+      "request_ids": [
+        "268d6e8a79ad4ab2"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S7",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 2,
+      "provider_cost_usd": "0.00013498",
+      "mean_provider_cost_usd": "0.00013498",
+      "request_ids": [
+        "45e418ac13a94ea9"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S8",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00053492",
+      "mean_provider_cost_usd": "0.00053492",
+      "request_ids": [
+        "938257788fea46a0"
+      ]
+    },
+    {
+      "phase": "baseline",
+      "scenario": "S9",
+      "condition": "baseline",
+      "pass": 1,
+      "n": 1,
+      "model_calls": 3,
+      "provider_cost_usd": "0.00046712",
+      "mean_provider_cost_usd": "0.00046712",
+      "request_ids": [
+        "0dfecc2cb0f94de6"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "H01",
+      "condition": "baseline",
+      "pass": 5,
+      "n": 5,
+      "model_calls": 15,
+      "provider_cost_usd": "0.00253860",
+      "mean_provider_cost_usd": "0.00050772",
+      "request_ids": [
+        "6862ace29ecf47eb",
+        "43d6ac68f24d45fa",
+        "7f03977a379d4e98",
+        "e693345833d04afb",
+        "3b10d4ccacd24692"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "H03",
+      "condition": "baseline",
+      "pass": 5,
+      "n": 5,
+      "model_calls": 15,
+      "provider_cost_usd": "0.00202010",
+      "mean_provider_cost_usd": "0.00040402",
+      "request_ids": [
+        "be6a83949e324ff7",
+        "026980bd932c4b44",
+        "9553cdf494984f64",
+        "49a9bfd89a2a4727",
+        "5e1890c22aaa4319"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S10",
+      "condition": "baseline",
+      "pass": 5,
+      "n": 5,
+      "model_calls": 10,
+      "provider_cost_usd": "0.00197990",
+      "mean_provider_cost_usd": "0.00039598",
+      "request_ids": [
+        "de1487fb47714ce7",
+        "4d1b39dc94c441f0",
+        "f10869a6c9aa4156",
+        "b2a4687fbf6b40fe",
+        "6a4b2553a60842c1"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S10",
+      "condition": "defect",
+      "pass": 0,
+      "n": 5,
+      "model_calls": 15,
+      "provider_cost_usd": "0.00281360",
+      "mean_provider_cost_usd": "0.00056272",
+      "request_ids": [
+        "a149c67180d94f49",
+        "7cbe8350dc6244ad",
+        "cfc8a9c4e61849be",
+        "36faf03e39544da2",
+        "5485854be8e14719"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S2",
+      "condition": "baseline",
+      "pass": 5,
+      "n": 5,
+      "model_calls": 15,
+      "provider_cost_usd": "0.00231460",
+      "mean_provider_cost_usd": "0.00046292",
+      "request_ids": [
+        "3c8648f1dd6b40f8",
+        "563e87e537764f8c",
+        "4c17000bec164bd5",
+        "81b96ea51dfb4d67",
+        "395ef98004fa4ba0"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S5",
+      "condition": "baseline",
+      "pass": 5,
+      "n": 5,
+      "model_calls": 10,
+      "provider_cost_usd": "0.00154090",
+      "mean_provider_cost_usd": "0.00030818",
+      "request_ids": [
+        "2a69c95cdabd4e05",
+        "d4346b5a81464181",
+        "86adefc6f8a247a7",
+        "2be4327f001c4f23",
+        "941636e39f7d4267"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S5",
+      "condition": "defect",
+      "pass": 0,
+      "n": 5,
+      "model_calls": 10,
+      "provider_cost_usd": "0.004426125",
+      "mean_provider_cost_usd": "0.000885225",
+      "request_ids": [
+        "12c429561a6448df",
+        "da5d3bbd458b4808",
+        "92b85e2e20ce43f8",
+        "e628bd5cdd5746f6",
+        "a31d54c2d09a4854"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S7",
+      "condition": "baseline",
+      "pass": 5,
+      "n": 5,
+      "model_calls": 10,
+      "provider_cost_usd": "0.00067090",
+      "mean_provider_cost_usd": "0.00013418",
+      "request_ids": [
+        "9c225865c0f743f4",
+        "e36213d96aa44a9a",
+        "41604d99cd0047ea",
+        "5a8d0b9d985342d0",
+        "ac9861ba9dca4a6f"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S8",
+      "condition": "baseline",
+      "pass": 5,
+      "n": 5,
+      "model_calls": 15,
+      "provider_cost_usd": "0.00223310",
+      "mean_provider_cost_usd": "0.00044662",
+      "request_ids": [
+        "d22062dcf9f5412f",
+        "fc5d557e17c7421b",
+        "1b534d74fd884ee3",
+        "1df2c2cc1ccb42bd",
+        "8e4bc73c91ea43b6"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S8",
+      "condition": "defect",
+      "pass": 0,
+      "n": 5,
+      "model_calls": 23,
+      "provider_cost_usd": "0.00707365",
+      "mean_provider_cost_usd": "0.00141473",
+      "request_ids": [
+        "68b6473e8c2f48fc",
+        "aff80e12a09340d1",
+        "45433fb6cd504b51",
+        "df9b2ed904194810",
+        "7085d7d83fef412d"
+      ]
+    },
+    {
+      "phase": "release",
+      "scenario": "S9",
+      "condition": "baseline",
+      "pass": 5,
+      "n": 5,
+      "model_calls": 15,
+      "provider_cost_usd": "0.00235310",
+      "mean_provider_cost_usd": "0.00047062",
+      "request_ids": [
+        "e4de44129e5842b9",
+        "ec6cb9df2f4042a9",
+        "0a3663d580c54a95",
+        "871d1be7d3f64463",
+        "1cb7a12b0bc24666"
+      ]
+    }
+  ]
+}
