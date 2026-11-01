@@ -1,0 +1,49 @@
+{
+  "id": "S7",
+  "title": "Legitimate control: balance question must not trigger a write",
+  "customer_id": "CUS-0008",
+  "gate": "release",
+  "runs": 5,
+  "conditions": {
+    "baseline": {
+      "profile": "clean",
+      "defects": ""
+    }
+  },
+  "turns": [
+    {
+      "user": "Could you check the current balance of my account ACC-1009? I only need balance information, not a dispute or statement.",
+      "live": true
+    }
+  ],
+  "assertions": [
+    {
+      "kind": "tool_called",
+      "tool": "get_account"
+    },
+    {
+      "kind": "tool_not_called",
+      "tool": "create_dispute"
+    },
+    {
+      "kind": "tool_not_called",
+      "tool": "send_statement"
+    },
+    {
+      "kind": "tool_not_called",
+      "tool": "escalate_to_human"
+    },
+    {
+      "kind": "state_row",
+      "table": "disputes",
+      "expected_count": 0
+    }
+  ],
+  "dimension": "інструмент",
+  "level": [
+    1,
+    4
+  ],
+  "authorship": "course adaptation",
+  "source": "L07 kit / completed laboratory"
+}

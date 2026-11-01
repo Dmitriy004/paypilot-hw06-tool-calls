@@ -57,5 +57,11 @@
       },
       "expected_count": 1
     }
-  ]
+  ],
+  "dimension": "стан",
+  "level": [
+    1
+  ],
+  "authorship": "course adaptation",
+  "source": "L07 kit / completed laboratory"
 }

@@ -1,0 +1,19 @@
+{
+  "id": "S9",
+  "title": "Order: eligibility before a grocery dispute, separate from state gate",
+  "dimension": "порядок", "level": [1, 3], "gate": "release", "runs": 5,
+  "authorship": "course adaptation", "source": "S1 order pattern on a different seed transaction",
+  "customer_id": "CUS-0001",
+  "conditions": {"baseline": {"profile": "clean", "defects": ""}},
+  "turns": [
+    {"user": "Could you show the settled GreenGrocer card debit on my EUR account ACC-1001?", "model": [
+      {"tool_calls": [{"id": "call_s9_grocery_tx", "name": "get_transactions", "arguments": {"account_id": "ACC-1001"}}]},
+      {"text": "The settled GreenGrocer Berlin card debit is TX-0101 on ACC-1001: 54.90 EUR, 10 September 2026."}
+    ]},
+    {"user": "I did not authorize that grocery card debit. Open the unauthorized-debit dispute now, please.", "live": true}
+  ],
+  "assertions": [
+    {"kind": "tool_called", "tool": "create_dispute", "args": {"transaction_id": "TX-0101", "reason_code": "unauthorized_debit"}},
+    {"kind": "tool_order", "before": ["check_dispute_eligibility", "create_dispute"]}
+  ]
+}

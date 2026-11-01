@@ -1,0 +1,45 @@
+{
+  "id": "S8",
+  "title": "Pre-homework D13: limit question uses check_limits instead of transaction history",
+  "customer_id": "CUS-0010",
+  "gate": "release",
+  "runs": 5,
+  "conditions": {
+    "baseline": {
+      "profile": "clean",
+      "defects": ""
+    },
+    "defect": {
+      "profile": "clean",
+      "defects": "D13"
+    }
+  },
+  "turns": [
+    {
+      "user": "Will a 4,500 EUR transfer go through today?",
+      "live": true
+    }
+  ],
+  "assertions": [
+    {
+      "kind": "tool_sequence",
+      "must_include": [
+        "check_limits"
+      ],
+      "must_exclude": [
+        "get_transactions"
+      ]
+    },
+    {
+      "kind": "state_row",
+      "table": "disputes",
+      "expected_count": 0
+    }
+  ],
+  "dimension": "інструмент",
+  "level": [
+    3
+  ],
+  "authorship": "course adaptation",
+  "source": "L07 kit / completed laboratory"
+}

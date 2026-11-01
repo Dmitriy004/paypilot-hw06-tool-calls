@@ -1,3 +1,10 @@
 __pycache__/
 *.pyc
 run-*.json
+.env
+.env.*
+!.env.example
+.idea/
+.serena/
+.tmp/
+reports/

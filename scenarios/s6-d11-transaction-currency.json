@@ -1,0 +1,76 @@
+{
+  "id": "S6",
+  "title": "Own D11 scenario: dispute currency comes from transaction, not account",
+  "customer_id": "CUS-0008",
+  "gate": "daily",
+  "runs": 1,
+  "conditions": {
+    "baseline": {
+      "profile": "clean",
+      "defects": ""
+    },
+    "defect": {
+      "profile": "clean",
+      "defects": "D11"
+    }
+  },
+  "turns": [
+    {
+      "user": "Please show my BookDepot card payment from 9 September on ACC-1009.",
+      "model": [
+        {
+          "tool_calls": [
+            {
+              "id": "call_s6_currency_tx",
+              "name": "get_transactions",
+              "arguments": {
+                "account_id": "ACC-1009"
+              }
+            }
+          ]
+        },
+        {
+          "text": "TX-0801 is a settled card payment to BookDepot US on 9 September 2026: 120.00 USD, on your EUR account ACC-1009."
+        }
+      ]
+    },
+    {
+      "user": "I did not authorize TX-0801. Please open an unauthorized-debit dispute for that 120 USD transaction now.",
+      "live": true
+    }
+  ],
+  "assertions": [
+    {
+      "kind": "tool_called",
+      "tool": "create_dispute",
+      "args": {
+        "transaction_id": "TX-0801",
+        "reason_code": "unauthorized_debit"
+      }
+    },
+    {
+      "kind": "state_row",
+      "table": "disputes",
+      "where": {
+        "transaction_id": "TX-0801"
+      },
+      "expect_fields": {
+        "account_id": "ACC-1009",
+        "amount": 120.0,
+        "currency": "USD"
+      },
+      "expected_count": 1
+    },
+    {
+      "kind": "state_row",
+      "table": "disputes",
+      "expected_count": 1
+    }
+  ],
+  "dimension": "стан",
+  "level": [
+    1
+  ],
+  "authorship": "course adaptation",
+  "source": "L07 kit / completed laboratory"
+}

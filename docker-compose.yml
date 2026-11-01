@@ -1,7 +1,7 @@
 x-eval: &eval
   image: python:3.12-slim
   working_dir: /l07
-  entrypoint: ["python", "run_step.py"]
+  entrypoint: ["python", "-u", "capture_run.py"]
   command: []
   volumes:
     - .:/l07
@@ -9,6 +9,7 @@ x-eval: &eval
     PYTHONDONTWRITEBYTECODE: "1"
     SERVICE_URL: ${EVAL_STAND_URL:-http://host.docker.internal:8000}
     MOCK_URL: ${EVAL_MOCK_URL:-http://host.docker.internal:1080}
+    L07_RUN_LABEL: ${L07_RUN_LABEL:-manual}
   extra_hosts:
     - host.docker.internal:host-gateway
 

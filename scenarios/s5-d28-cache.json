@@ -71,5 +71,11 @@
       "from_call": 1,
       "min": 1000
     }
-  ]
+  ],
+  "dimension": "вартість",
+  "level": [
+    2
+  ],
+  "authorship": "course adaptation",
+  "source": "L07 kit / completed laboratory"
 }

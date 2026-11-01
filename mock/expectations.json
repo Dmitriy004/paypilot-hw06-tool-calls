@@ -1,5 +1,225 @@
 [
   {
+    "id": "h01-step1-reply1",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'user' && @.content == 'List my two foreign-currency card payments on ACC-1009 for September.')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "h01-step1-reply1",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "tool_calls",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_h01_foreign_tx",
+                  "type": "function",
+                  "function": {
+                    "name": "get_transactions",
+                    "arguments": "{\"account_id\": \"ACC-1009\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "h01-step1-reply2",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'tool' && @.tool_call_id == 'call_h01_foreign_tx')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "h01-step1-reply2",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "stop",
+            "message": {
+              "role": "assistant",
+              "content": "The foreign-currency card payments are TX-0801: BookDepot US, 120.00 USD on 9 September 2026; and TX-0802: London Transit, 80.00 GBP on 10 September 2026."
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "h02-step1-reply1",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'user' && @.content == 'Open an unauthorized-debit case for my 89.99 USD CloudServe transaction TX-0202 on ACC-1003.')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "h02-step1-reply1",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "tool_calls",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_h02_usd_elig",
+                  "type": "function",
+                  "function": {
+                    "name": "check_dispute_eligibility",
+                    "arguments": "{\"transaction_id\": \"TX-0202\", \"reason_code\": \"unauthorized_debit\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "h02-step1-reply2",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'tool' && @.tool_call_id == 'call_h02_usd_elig')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "h02-step1-reply2",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "tool_calls",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_h02_usd_open",
+                  "type": "function",
+                  "function": {
+                    "name": "create_dispute",
+                    "arguments": "{\"transaction_id\": \"TX-0202\", \"reason_code\": \"unauthorized_debit\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "h02-step1-reply3",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'tool' && @.tool_call_id == 'call_h02_usd_open')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "h02-step1-reply3",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "stop",
+            "message": {
+              "role": "assistant",
+              "content": "Your unauthorized-debit dispute for TX-0202, 89.99 USD on ACC-1003, is open."
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
     "id": "s1-step1-reply1",
     "httpRequest": {
       "method": "POST",
@@ -161,6 +381,92 @@
             "message": {
               "role": "assistant",
               "content": "I can see it on ACC-1003: TX-0202, 8 September 2026, 89.99 USD, CloudServe Subscription."
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "s10-step1-reply1",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'user' && @.content == 'I need the older of the two 240 EUR TechMart card payments checked on ACC-1005.')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "s10-step1-reply1",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "tool_calls",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_s10_expired_tx",
+                  "type": "function",
+                  "function": {
+                    "name": "get_transactions",
+                    "arguments": "{\"account_id\": \"ACC-1005\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "s10-step1-reply2",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'tool' && @.tool_call_id == 'call_s10_expired_tx')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "s10-step1-reply2",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "stop",
+            "message": {
+              "role": "assistant",
+              "content": "The older payment is TX-0402, TechMart Online, 240.00 EUR, 14 July 2026. The newer one is TX-0401 on 20 July 2026."
             }
           }
         ],
@@ -715,6 +1021,178 @@
             "message": {
               "role": "assistant",
               "content": "Glad it matches. Is there anything else I can help with?"
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "s6-step1-reply1",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'user' && @.content == 'Please show my BookDepot card payment from 9 September on ACC-1009.')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "s6-step1-reply1",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "tool_calls",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_s6_currency_tx",
+                  "type": "function",
+                  "function": {
+                    "name": "get_transactions",
+                    "arguments": "{\"account_id\": \"ACC-1009\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "s6-step1-reply2",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'tool' && @.tool_call_id == 'call_s6_currency_tx')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "s6-step1-reply2",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "stop",
+            "message": {
+              "role": "assistant",
+              "content": "TX-0801 is a settled card payment to BookDepot US on 9 September 2026: 120.00 USD, on your EUR account ACC-1009."
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "s9-step1-reply1",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'user' && @.content == 'Could you show the settled GreenGrocer card debit on my EUR account ACC-1001?')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "s9-step1-reply1",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "tool_calls",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_s9_grocery_tx",
+                  "type": "function",
+                  "function": {
+                    "name": "get_transactions",
+                    "arguments": "{\"account_id\": \"ACC-1001\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "s9-step1-reply2",
+    "httpRequest": {
+      "method": "POST",
+      "path": ".*/chat/completions",
+      "body": {
+        "type": "JSON_PATH",
+        "jsonPath": "$.messages[-1:][?(@.role == 'tool' && @.tool_call_id == 'call_s9_grocery_tx')]"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "content-type": [
+          "application/json"
+        ]
+      },
+      "body": {
+        "id": "s9-step1-reply2",
+        "object": "chat.completion",
+        "model": "anthropic/claude-haiku-5.5",
+        "choices": [
+          {
+            "index": 0,
+            "finish_reason": "stop",
+            "message": {
+              "role": "assistant",
+              "content": "The settled GreenGrocer Berlin card debit is TX-0101 on ACC-1001: 54.90 EUR, 10 September 2026."
             }
           }
         ],

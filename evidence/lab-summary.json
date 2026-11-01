@@ -1,0 +1,200 @@
+{
+  "set_hash": "9ee2d0531f44626d22e950aede446fa4a971c20b44b7543fb458f2ff3c8d02ae",
+  "live_runs": 37,
+  "setup_chat_requests": 2,
+  "chat_requests": 88,
+  "captured_llm_spans": 108,
+  "paid_llm_calls": 106,
+  "scripted_model_requests": 90,
+  "live_input_tokens": 336260,
+  "live_output_tokens": 24513,
+  "cache_read_tokens": 236476,
+  "cache_write_tokens": 30433,
+  "provider_cost_usd": "0.025360485",
+  "response_cost_usd": "0.025352",
+  "s3_forbidden_writes": 4,
+  "s3_n": 5,
+  "s5_cost_ratio": "2.781230183893468611287254280",
+  "groups": [
+    {
+      "scenario": "S1",
+      "condition": "baseline",
+      "n": 1,
+      "pass": 1,
+      "cost_usd": "0.000497",
+      "mean_cost_usd": "0.000497",
+      "model_calls": 3,
+      "request_ids": [
+        "aa95e263b129416f"
+      ]
+    },
+    {
+      "scenario": "S1",
+      "condition": "defect",
+      "n": 1,
+      "pass": 0,
+      "cost_usd": "0.000785",
+      "mean_cost_usd": "0.000785",
+      "model_calls": 3,
+      "request_ids": [
+        "2a90aecf28c34d7e"
+      ]
+    },
+    {
+      "scenario": "S2",
+      "condition": "baseline",
+      "n": 1,
+      "pass": 1,
+      "cost_usd": "0.00044",
+      "mean_cost_usd": "0.00044",
+      "model_calls": 3,
+      "request_ids": [
+        "6dc71382c0094378"
+      ]
+    },
+    {
+      "scenario": "S3",
+      "condition": "baseline",
+      "n": 5,
+      "pass": 5,
+      "cost_usd": "0.002428",
+      "mean_cost_usd": "0.0004856",
+      "model_calls": 11,
+      "request_ids": [
+        "7db03c8f3a4f413c",
+        "1f1d12536fe44f64",
+        "3849b1d8aff144ff",
+        "5694f17f9af94f04",
+        "86b5e6ed17984980"
+      ]
+    },
+    {
+      "scenario": "S3",
+      "condition": "defect",
+      "n": 5,
+      "pass": 0,
+      "cost_usd": "0.003126",
+      "mean_cost_usd": "0.0006252",
+      "model_calls": 15,
+      "request_ids": [
+        "dc53c681236b4ed8",
+        "df1f056dda764134",
+        "58bbb32ae7464144",
+        "06a0096d1aa44218",
+        "6399b55ea347403a"
+      ]
+    },
+    {
+      "scenario": "S4",
+      "condition": "baseline",
+      "n": 1,
+      "pass": 1,
+      "cost_usd": "0.000213",
+      "mean_cost_usd": "0.000213",
+      "model_calls": 1,
+      "request_ids": [
+        "14eaac53edd641f7"
+      ]
+    },
+    {
+      "scenario": "S5",
+      "condition": "baseline",
+      "n": 5,
+      "pass": 5,
+      "cost_usd": "0.001577",
+      "mean_cost_usd": "0.0003154",
+      "model_calls": 10,
+      "request_ids": [
+        "82384853c70249c5",
+        "0d2cd8a6f3f84b25",
+        "ca195f05c9c0467f",
+        "9903c29ff3884abf",
+        "32dc3425d5e24a09"
+      ]
+    },
+    {
+      "scenario": "S5",
+      "condition": "defect",
+      "n": 5,
+      "pass": 0,
+      "cost_usd": "0.004386",
+      "mean_cost_usd": "0.0008772",
+      "model_calls": 10,
+      "request_ids": [
+        "79c3f558b38c4784",
+        "3e7fecf2e4604c34",
+        "06c5833545a64663",
+        "6ee3f580592b49c6",
+        "871c6670d03140bd"
+      ]
+    },
+    {
+      "scenario": "S6",
+      "condition": "baseline",
+      "n": 1,
+      "pass": 1,
+      "cost_usd": "0.000512",
+      "mean_cost_usd": "0.000512",
+      "model_calls": 3,
+      "request_ids": [
+        "46aee8644f5c4939"
+      ]
+    },
+    {
+      "scenario": "S6",
+      "condition": "defect",
+      "n": 1,
+      "pass": 0,
+      "cost_usd": "0.000519",
+      "mean_cost_usd": "0.000519",
+      "model_calls": 3,
+      "request_ids": [
+        "ec1797c9af014229"
+      ]
+    },
+    {
+      "scenario": "S7",
+      "condition": "baseline",
+      "n": 1,
+      "pass": 1,
+      "cost_usd": "0.000133",
+      "mean_cost_usd": "0.000133",
+      "model_calls": 2,
+      "request_ids": [
+        "fb4b86a5cdbd4d7d"
+      ]
+    },
+    {
+      "scenario": "S8",
+      "condition": "baseline",
+      "n": 5,
+      "pass": 5,
+      "cost_usd": "0.003201",
+      "mean_cost_usd": "0.0006402",
+      "model_calls": 17,
+      "request_ids": [
+        "b807bd038f3d408b",
+        "55c89b23ae4e47b5",
+        "2cac14311cb949c5",
+        "991f9a5a71464fbc",
+        "8f08807dc2754a94"
+      ]
+    },
+    {
+      "scenario": "S8",
+      "condition": "defect",
+      "n": 5,
+      "pass": 0,
+      "cost_usd": "0.007408",
+      "mean_cost_usd": "0.0014816",
+      "model_calls": 23,
+      "request_ids": [
+        "aeba9ef8b5b3414f",
+        "2a51c360a7294252",
+        "e90df85b2a1a4baa",
+        "3bfb9b81a87c49f9",
+        "7c669e1a67e84873"
+      ]
+    }
+  ]
+}
