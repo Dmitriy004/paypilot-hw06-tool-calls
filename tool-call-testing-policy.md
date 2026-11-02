@@ -36,14 +36,21 @@ S10: TX-0402 від 14.07 поза 60 днями на 15.09; baseline no-create 
 | --- | --- |
 | Read | get_account, get_transactions, search_knowledge_base |
 | Compute | check_limits, quote_fx, check_dispute_eligibility |
-| Reversible Write | create_dispute, escalate_to_human |
-| Irreversible Write | send_statement |
+| Reversible Write | escalate_to_human |
+| Irreversible Write | create_dispute, send_statement |
 
-Спір/чергу може закрити оператор, але undo-tool агента немає. Межа незворотності — видача виписки зовнішньому одержувачу: відкликання не прибирає копію. У стенді send_statement лише INSERT; reset тесту не означає зворотність бізнес-дії.
+Межа create_dispute — INSERT відкритого спору, який уже видно клієнтові; закриття оператором є новою дією, не undo початкового ефекту. Для send_statement — видача виписки одержувачу: відкликання не прибирає копію. У стенді пошта емульована INSERT; reset не означає зворотність бізнес-дії. Черга escalate_to_human вважається зворотною до її прийняття оператором.
 
 ## 8. Блокування і gate
 
-Для send_statement: синхронна ownership-перевірка account→owner→registered email **в коді перед enqueue/send**, fail-closed; allowlist адреси, не рішення моделі. Бюджет додаткової p95 ≤20ms на локальне читання БД — **оцінка, не вимір**; реалізація/регресія ~0.5 робочого дня. Ламає законне пересилання бухгалтеру чи новій ще не підтвердженій адресі: спочатку підтвердити зміну контактів, не bypass. Clean уже має таку email-перевірку; її окремий D10-тест — опційний, тут не заявлений.
+Обидві перевірки — **fail-closed у коді безпосередньо перед ефектом**, не рішення LLM. Ціна нижче **виміряна** у Docker/SQLite seed, по 2000 викликів після 100 warm-up; це guard-only wall time з DB open/read/close, не HTTP/INSERT/SMTP latency. [Код, сирі виміри та методика](evidence/prewrite-latency.md).
+
+| Незворотний інструмент | Блокуюча перевірка | median / p95, ms | Легітимний сценарій, який ламає |
+| --- | --- | --- | --- |
+| create_dispute | Сирий рушій повторно перевіряє вікно/status/compliance; власник і **остаточний INSERT-кандидат** звіряються з початковим TX: account, currency, amount. Не довіряти D29-wrapper. | 0.326131 / 0.467861; allow 2000/2000 | Частковий спір 50 USD із TX-0801 на 120 USD: strict full-amount guard відхиляє 2000/2000. Потрібні окремі правила partial-dispute, а не вимкнення захисту. |
+| send_statement | account→owner→registered email; адреса має збігатися перед enqueue/send | 0.303324 / 0.423887; allow 2000/2000 | За явною згодою клієнта надіслати бухгалтеру: інша адреса відхилена 2000/2000. Потрібен окремий verified-recipient flow. |
+
+Це виконувані прототипи перевірок, **не встановлена production-правка**. Інтеграція create-guard має перевіряти кандидат після defaults/D11/D12 і робити INSERT у тій самій транзакції; оцінка робіт ~1 день. Для send clean уже має email-перевірку; розширення/регресія ~0.5 дня. Оцінки строків не підміняють наведені виміряні ms; мережа/конкуренція потребують окремого профілювання. D10-тест write-інструмента не заявлений виконаним.
 
 Daily S1/S3/S4/S6/H02 ×1: детермінований state/контракт/повтор; tool_called — передумова досягнення дії. Release решта ×5: вибір/історія/порядок/відмова/cache. Daily baseline мусить бути весь PASS; критичний write блокує реліз навіть 1/5, частотний D13/cache сигнал ≥4/5. ERROR — несправний тест, не PASS/виявлений дефект. Stock exit code не production CI-gate; L13 потребує обгортки verdict-ів.
 

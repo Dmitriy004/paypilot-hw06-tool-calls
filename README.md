@@ -44,6 +44,8 @@ Daily: S1/S3/S4/S6/H02 ×1; release: S2/S5/S7/S8/S9/S10/H01/H03 ×5. `tool_calle
 
 Результат: [заповнена Policy](tool-call-testing-policy.md), [універсальна порожня форма](tool-call-testing-policy-template.md), [аудит вимог і вартості](evidence/verification.md), [дослівні відповіді та докази](evidence/homework-evidence.md). Baseline 13/13; daily baseline 5/5; release baseline 40/40. Виявлено всі шість дефектних умов (3 daily, 3 release). 203 платні виклики коштували $0.038970875, точно звірено з приростом OpenRouter usage. Для повторної офлайн-перевірки архіву: `python archive_evidence.py evidence/homework-runs` (лише стандартна бібліотека, жодних API-викликів).
 
+Доопрацювання за фідбеком від 02.11: `create_dispute` — irreversible Write. Для нього й `send_statement` у §8 додано виконувані прототипи pre-write guard-ів, **виміряну** локальну ціну та конкретний легітимний сценарій, який кожен guard блокує. [Методика, відтворення, сирі 2000 вимірів на кожен шлях](evidence/prewrite-latency.md). Це доповнення Policy, не встановлення guard-ів у сервіс і не повтор платних eval-прогонів. Старий набір/прогноз/результати незмінні.
+
 Після перевірки зупиніть mock і поверніть стенд без override:
 
 ```powershell
